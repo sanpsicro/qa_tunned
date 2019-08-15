@@ -91,7 +91,8 @@ jobs:
             echo  $myvar localhost | sudo tee -a /etc/hosts
             docker-compose up -d
             cd automation_carina
-            mvn clean -Dsuite=web test
+            curl http://localhost:4444/wd/hub
+         #   mvn clean -Dsuite=web test
           
 
       
