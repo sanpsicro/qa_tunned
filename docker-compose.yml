@@ -22,5 +22,7 @@ services:
 
   hub:
     image: selenium/hub:3.11.0-californium
+    expose:
+      - "4444"
     ports:
       - "4444:4444"
