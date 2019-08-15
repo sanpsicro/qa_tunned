@@ -1,0 +1,96 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+          
+      - run: npm run setup
+
+      - run: docker build -t sanpsicro/test-image-2 .
+
+      - run: |
+          docker login -u sanpsicro -p dockerpass
+          docker push sanpsicro/test-image-2
+     
+          
+      
+
+
+      
+      # run tests!
+      
+  test:
+      docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+
+      working_directory: ~/test
+
+      environment:
+      # Customize the JVM maximum heap limit
+        MAVEN_OPTS: -Xmx3200m
+
+
+      steps:
+      
+      - checkout
+      - setup_remote_docker
+        
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+            docker-compose up 
+      
+      # Download and cache dependenciesgit
+      - run: git clone https://github.com/sanpsicro/automation_carina.git
+
+      - run: |
+          cd automation_carina
+          mvn dependency:go-offline
+
+      # run tests!
+      - run: |
+          cd automation_carina
+          mvn clean -Dsuite=web test
+      
+workflows:
+  version: 2
+  build_test:
+    jobs:
+    - build
+    - test:
+        requires:
+          - build
