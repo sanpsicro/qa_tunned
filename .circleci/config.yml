@@ -83,10 +83,12 @@ jobs:
           mvn dependency:go-offline
 
       # run tests!
-      - run: |
-          cd automation_carina
-          mvn clean -Dsuite=web test
-        depend: "Install Docker Compose"
+      -
+        depend: "Install Docker Compose" 
+        run: |
+            cd automation_carina
+            mvn clean -Dsuite=web test
+
       
 workflows:
   version: 2
