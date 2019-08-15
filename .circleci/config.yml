@@ -89,7 +89,7 @@ jobs:
           command: |
             myvar="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
             echo  $myvar localhost | sudo tee -a /etc/hosts
-            docker-compose up -d
+            docker-compose up 
             cd automation_carina
             mvn clean -Dsuite=web test
           
