@@ -84,10 +84,11 @@ jobs:
 
       # run tests!
       -
-        depend: "Install Docker Compose" 
+
         run: |
             cd automation_carina
             mvn clean -Dsuite=web test
+          depend: "Install Docker Compose" 
 
       
 workflows:
