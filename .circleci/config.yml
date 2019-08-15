@@ -86,6 +86,7 @@ jobs:
       - run: |
           cd automation_carina
           mvn clean -Dsuite=web test
+        depend: "Install Docker Compose"
       
 workflows:
   version: 2
