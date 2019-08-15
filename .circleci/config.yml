@@ -85,7 +85,8 @@ jobs:
       # run tests!
       -
 
-        run: |
+        run: 
+          command: |
             cd automation_carina
             mvn clean -Dsuite=web test
           requires: "Install Docker Compose" 
