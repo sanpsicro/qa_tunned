@@ -87,6 +87,7 @@ jobs:
 
         run: 
           command: |
+            ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
             echo 127.0.0.1 localhost | sudo tee -a /etc/hosts
             docker-compose up -d
             cd automation_carina
