@@ -53,6 +53,10 @@ jobs:
       docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
+      - image: robcherry/docker-chromedriver
+      - image: sanpsicro/test-image-2:latest
+
+      - image:
 
       working_directory: ~/test
 
@@ -65,7 +69,17 @@ jobs:
       
       - checkout
       - setup_remote_docker
-        
+
+      - run:
+          name: Download Selenium
+          command: | 
+            curl -O http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
+      
+      - run:
+          name: Start Selenium
+          command: java -jar selenium-server-standalone-3.141.59.jar -log test-reports/selenium.log
+          background: true
+
       - run:
           name: Install Docker Compose
           command: |
@@ -82,17 +96,16 @@ jobs:
           cd automation_carina
           mvn dependency:go-offline
 
-      # run tests!
+      # run test
       -
 
         run: 
           command: |
             myvar="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
             echo  $myvar localhost | sudo tee -a /etc/hosts
-            docker-compose up -d
+        #    docker-compose up -d
             cd automation_carina
-            curl -i http://localhost:4444/wd/hub
-         #   mvn clean -Dsuite=web test
+            mvn clean -Dsuite=web test
           
 
       
