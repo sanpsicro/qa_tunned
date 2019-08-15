@@ -27,20 +27,20 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+#      - run: npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+#      - save_cache:
+#          paths:
+#            - node_modules
+#          key: v1-dependencies-{{ checksum "package.json" }}
           
-      - run: npm run setup
+#      - run: npm run setup
 
-      - run: docker build -t sanpsicro/test-image-2 .
+#      - run: docker build -t sanpsicro/test-image-2 .
 
-      - run: |
-          docker login -u sanpsicro -p dockerpass
-          docker push sanpsicro/test-image-2
+#      - run: |
+#          docker login -u sanpsicro -p dockerpass
+#          docker push sanpsicro/test-image-2
      
           
       
@@ -98,7 +98,7 @@ workflows:
   version: 2
   build_test:
     jobs:
-    #- build
+    - build
     - test:
-     #   requires:
-      #    - build
+        requires:
+          - build
