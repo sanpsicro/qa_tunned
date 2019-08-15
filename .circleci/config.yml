@@ -73,6 +73,7 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
             docker-compose up -d
+          background: true  
       
       # Download and cache dependenciesgit
       - run: git clone https://github.com/sanpsicro/automation_carina.git
