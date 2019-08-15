@@ -56,7 +56,7 @@ jobs:
       - image: robcherry/docker-chromedriver
       - image: sanpsicro/test-image-2:latest
 
-      - image:
+      
 
       working_directory: ~/test
 
