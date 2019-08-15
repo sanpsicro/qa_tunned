@@ -69,7 +69,7 @@ jobs:
       - run:
           name: Install Docker Compose
           command: |
-            curl -i -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            curl  -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
             
@@ -91,7 +91,7 @@ jobs:
             echo  $myvar localhost | sudo tee -a /etc/hosts
             docker-compose up -d
             cd automation_carina
-            curl http://localhost:4444/wd/hub
+            curl -i http://localhost:4444/wd/hub
          #   mvn clean -Dsuite=web test
           
 
