@@ -73,8 +73,8 @@ jobs:
 
       - run:
           command: |
-            docker run robcherry/docker-chromedriver
-            docker run sanpsicro/test-image-2:latest
+            docker run robcherry/docker-chromedriver -d
+            docker run sanpsicro/test-image-2:latest -d
       
       - run:
           name: Start Selenium
