@@ -72,7 +72,7 @@ jobs:
             curl -O http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar 
 
        - run:
-          command:
+          command: |
             docker run robcherry/docker-chromedriver
             docker run sanpsicro/test-image-2:latest
       
