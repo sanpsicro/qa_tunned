@@ -76,8 +76,6 @@ jobs:
           name: unzip 
           command: | 
             unzip chromedriver_linux64.zip
-            cd chromedriver_linux64
-            mv chromedriver ~/test
 
                  
 
