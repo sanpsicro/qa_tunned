@@ -53,11 +53,7 @@ jobs:
       docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
-      - image: robcherry/docker-chromedriver
-      - image: sanpsicro/test-image-2:latest
-
       
-
       working_directory: ~/test
 
       environment:
@@ -74,6 +70,11 @@ jobs:
           name: Download Selenium
           command: | 
             curl -O http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar 
+
+       - run:
+          command:
+            docker run robcherry/docker-chromedriver
+            docker run sanpsicro/test-image-2:latest
       
       - run:
           name: Start Selenium
