@@ -5,6 +5,7 @@
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@0.1.3
+my-command: browser-tools/install-chrome  
 jobs:
   build:
     docker:
@@ -68,6 +69,7 @@ jobs:
       
       - checkout
       - setup_remote_docker
+      - my-command
 
       - run:
           name: Download Selenium
