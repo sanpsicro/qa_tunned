@@ -75,6 +75,7 @@ jobs:
           command: |
             docker run robcherry/docker-chromedriver -d
             docker run sanpsicro/test-image-2:latest -d
+          backgorund: true  
       
       - run:
           name: Start Selenium
