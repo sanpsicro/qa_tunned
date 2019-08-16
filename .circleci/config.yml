@@ -70,16 +70,25 @@ jobs:
           name: Download Selenium
           command: | 
             curl -O http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar 
+            curl -O https://chromedriver.storage.googleapis.com/77.0.3865.10/chromedriver_linux64.zip 
 
       - run:
-          command: |
-            docker run robcherry/docker-chromedriver 
-            docker run sanpsicro/test-image-2:latest 
-          backgorund: true
+          name: unzip 
+          command: | 
+            unzip chromedriver_linux64.zip
+            cd chromedriver_linux64
+            mv chromedriver ~/test
+
+                 
+
+     # - run:
+     #     command: | 
+     #       docker run sanpsicro/test-image-2:latest 
+     #     background: true
       
       - run:
           name: Start Selenium
-          command: java -jar selenium-server-standalone-3.141.59.jar -port 4455
+          command: java -Dwebdriver.chrome.driver="chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
           background: true
 
       - run:
