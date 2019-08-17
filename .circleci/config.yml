@@ -69,7 +69,6 @@ jobs:
       
       - checkout
       - setup_remote_docker
-      - my-command
       - browser-tools/install-chrome
 
       - run:
