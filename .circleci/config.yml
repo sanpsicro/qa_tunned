@@ -72,6 +72,7 @@ jobs:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
 
+
       - run:
           name: Download Selenium
           command: | 
@@ -92,7 +93,8 @@ jobs:
       
       - run:
           name: Start Selenium
-          command: java  -jar selenium-server-standalone-3.141.59.jar -port 4455
+          command: java -Dwebdriver.chrome.driver="/usr/local/bin/chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
+
           background: true
 
       - run:
