@@ -76,7 +76,7 @@ jobs:
           name: Download Selenium
           command: | 
             curl -O http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar 
-            curl -0 https://chromedriver.storage.googleapis.com/76.0.3809.68/chromedriver_linux64.zip
+            curl -0 https://chromedriver.storage.googleapis.com/76.0.3809.68/chromedriver_linux64.zip --output chromedriver.zip
             unzip chromedriver_linux64.zip
 
      # - run:
