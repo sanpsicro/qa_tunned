@@ -93,7 +93,7 @@ jobs:
       
       - run:
           name: Start Selenium
-          command: java -Dwebdriver.chromdriver="chromedriver" -Dwebdriver.chrome.addArguments="--no-sandbox"  -Dwebdriver.chrome.addArguments="--disable-dev-shm-usage"  -jar selenium-server-standalone-3.141.59.jar -port 4455
+          command: java -Dwebdriver.chromedriver="chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
 
 
           background: true
