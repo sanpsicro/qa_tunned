@@ -69,8 +69,7 @@ jobs:
       steps:
       
       - checkout
-      - setup_remote_docker
-      - browser-tools/install-chrome
+     
 
 
       - run:
@@ -94,17 +93,10 @@ jobs:
       
       - run:
           name: Start Selenium
-          command: java -Dwebdriver.chrome.driver="chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
-
-
+          command: # java -Dwebdriver.chrome.driver="chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
           background: true
 
-      - run:
-          name: Install Docker Compose
-          command: |
-            curl  -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+    
             
           #background: true  
       
@@ -119,6 +111,7 @@ jobs:
           command: |
              curl -s https://aerokube.com/cm/bash | bash \
                && ./cm selenoid start --vnc --tmpfs 128
+          background: true     
                
      
       - run: 
