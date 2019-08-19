@@ -115,6 +115,10 @@ jobs:
           cd automation_carina
           mvn dependency:go-offline
 
+      - run: 
+          command: |
+            curl -s https://aerokube.com/cm/bash | bash \ && ./cm selenoid start --vnc --tmpfs 128    
+
       # run test
       - run: 
           command: |
