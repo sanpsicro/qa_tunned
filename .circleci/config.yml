@@ -82,10 +82,10 @@ jobs:
      #       docker run sanpsicro/test-image-2:latest 
      #     background: true
       
-      - run:
-          name: Start Selenium
-          command: # java -Dwebdriver.chrome.driver="chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
-          background: true
+   #  - run:
+    #      name: Start Selenium
+    #      command: # java -Dwebdriver.chrome.driver="chromedriver" -jar selenium-server-standalone-3.141.59.jar -port 4455
+    #      background: true
 
     
             
