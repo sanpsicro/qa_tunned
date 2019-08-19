@@ -100,8 +100,8 @@ jobs:
 
       - run: 
           command: |
-             curl -s https://aerokube.com/cm/bash | bash \
-               && ./cm selenoid start --vnc --tmpfs 128
+             sudo curl -s https://aerokube.com/cm/bash | bash \
+                    && ./cm selenoid start --vnc --tmpfs 128
           background: true     
                
      
