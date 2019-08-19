@@ -119,7 +119,7 @@ jobs:
           command: |
             curl -s https://aerokube.com/cm/bash 
                
-      - run: bash \ && ./cm selenoid start --vnc --tmpfs 128 
+      - run: ls
       # run test
       - run: 
           command: |
