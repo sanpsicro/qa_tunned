@@ -100,6 +100,7 @@ jobs:
        #   mvn dependency:go-offline
 
       - run: 
+          name: selenoid
           command: |
              sudo curl -s https://aerokube.com/cm/bash |  bash \
                     && ./cm selenoid start --vnc --tmpfs 128
@@ -112,7 +113,8 @@ jobs:
             echo  $myvar localhost | sudo tee -a /etc/hosts
             cd automation_carina
             mvn clean -Dsuite=web test
-          
+          requires:  
+           - selenoid
 
       
 workflows:
