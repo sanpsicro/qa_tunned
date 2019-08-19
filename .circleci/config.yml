@@ -68,6 +68,7 @@ jobs:
       steps:
       
       - checkout
+      - setup_remote_docker
      
       - run:
           name: Download Selenium
@@ -100,7 +101,7 @@ jobs:
 
       - run: 
           command: |
-             sudo curl -s https://aerokube.com/cm/bash | sudo bash \
+             sudo curl -s https://aerokube.com/cm/bash |  bash \
                     && ./cm selenoid start --vnc --tmpfs 128
           background: true     
                
