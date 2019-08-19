@@ -117,10 +117,9 @@ jobs:
 
       - run: 
           command: |
-            curl -s https://aerokube.com/cm/bash bash \
+            curl -s https://aerokube.com/cm/bash bash \  && ./cm selenoid start --vnc --tmpfs 128 
                
-      - run: bash \ && ./cm selenoid start --vnc --tmpfs 128 
-      # run test
+     
       - run: 
           command: |
             myvar="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
